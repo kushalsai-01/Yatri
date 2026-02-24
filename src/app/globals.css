@@ -145,10 +145,9 @@ html, body {
    ═══════════════════════════════════════════ */
 
 .phone-shell {
-  width: 430px;
+  width: 100%;
   max-width: 430px;
   height: 100dvh;
-  max-height: 932px;
   position: relative;
   overflow: hidden;
   background: var(--bg);
@@ -156,13 +155,27 @@ html, body {
 
 @media (min-width: 900px) {
   .phone-shell {
-    border-radius: 40px;
+    border-radius: 44px;
     border: 3px solid var(--surface3);
     box-shadow:
       0 0 0 1px rgba(42, 48, 48, 0.5),
       0 25px 60px -12px rgba(0, 0, 0, 0.6),
-      0 0 80px -20px rgba(245, 166, 35, 0.08);
-    height: min(90vh, 860px);
+      0 0 120px -30px rgba(245, 166, 35, 0.06);
+    height: min(92vh, 880px);
+    width: 390px;
+  }
+  /* Notch / dynamic island illusion */
+  .phone-shell::before {
+    content: '';
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 28px;
+    background: var(--surface3);
+    border-radius: 20px;
+    z-index: 60;
   }
 }
 

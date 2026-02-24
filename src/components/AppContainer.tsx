@@ -74,14 +74,12 @@ export default function AppContainer() {
     setScreen(Screen.PREVIEW);
   }, []);
 
-  const handleIssue = useCallback((ticketId: string) => {
+  const handleIssue = useCallback((ticketId: string, fareAmount: number, stopName: string) => {
     setTicket((prev) => ({ ...prev, ticketId }));
-    // Record in localStorage
-    if (ticket.stop) {
-      recordTicket(ticket.totalFare, ticket.stop.name);
-    }
+    // Record in localStorage with passed values to avoid stale closure
+    recordTicket(fareAmount, stopName);
     setScreen(Screen.SUCCESS);
-  }, [ticket.totalFare, ticket.stop]);
+  }, []);
 
   const handleNewTicket = useCallback(() => {
     setTicket({
@@ -160,7 +158,7 @@ export default function AppContainer() {
             seniors={ticket.seniors}
             total={ticket.totalFare}
             onBack={() => setScreen(Screen.PASSENGERS)}
-            onIssue={handleIssue}
+            onIssue={(ticketId) => handleIssue(ticketId, ticket.totalFare, ticket.stop!.name)}
           />
         ) : null;
 

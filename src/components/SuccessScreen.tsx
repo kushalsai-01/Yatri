@@ -40,23 +40,33 @@ export default function SuccessScreen({
     >
       {/* ─── Animated Success Ring ─── */}
       <motion.div
+        className="relative"
         initial={{ scale: 0.3, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
         transition={{ type: 'spring', stiffness: 200, damping: 20 }}
       >
-        <svg width="100" height="100" viewBox="0 0 100 100" className="mb-6">
+        {/* Subtle glow behind the ring */}
+        <div className="absolute inset-0 blur-3xl bg-green/10 rounded-full scale-150" />
+        <svg width="110" height="110" viewBox="0 0 110 110" className="mb-6 relative z-10">
           <circle
-            cx="50" cy="50" r="45"
+            cx="55" cy="55" r="48"
             fill="none"
             stroke="var(--green)"
             strokeWidth="3"
+            opacity="0.15"
+          />
+          <circle
+            cx="55" cy="55" r="48"
+            fill="none"
+            stroke="var(--green)"
+            strokeWidth="3.5"
             className="success-circle"
           />
           <polyline
-            points="30,52 44,65 70,38"
+            points="35,57 49,70 77,42"
             fill="none"
             stroke="var(--green)"
-            strokeWidth="4"
+            strokeWidth="4.5"
             strokeLinecap="round"
             strokeLinejoin="round"
             className="success-check"

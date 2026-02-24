@@ -4,7 +4,7 @@
  * ═══════════════════════════════════════════ */
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { type Stop, type RouteId, ROUTES } from '@/data/routes';
 import { generateTicketId } from '@/lib/storage';
@@ -20,24 +20,28 @@ interface TicketPreviewProps {
   onIssue: (ticketId: string) => void;
 }
 
-/** Generates decorative barcode bars (pure visual) */
+/** Generates decorative barcode bars — hydration-safe (only renders client-side) */
 function Barcode() {
-  const bars = useMemo(() => {
+  const [bars, setBars] = useState<Array<{ w: number; h: number; gap: number }>>([]);
+
+  useEffect(() => {
     const result = [];
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 50; i++) {
       const w = Math.random() > 0.5 ? 2 : 1;
-      const h = 28 + Math.floor(Math.random() * 12);
+      const h = 24 + Math.floor(Math.random() * 16);
       result.push({ w, h, gap: Math.random() > 0.7 ? 2 : 1 });
     }
-    return result;
+    setBars(result);
   }, []);
+
+  if (bars.length === 0) return <div className="h-10" />;
 
   return (
     <div className="flex items-end justify-center gap-px h-10">
       {bars.map((bar, i) => (
         <div
           key={i}
-          className="barcode-line opacity-40"
+          className="barcode-line opacity-30"
           style={{ width: bar.w, height: bar.h, marginRight: bar.gap }}
         />
       ))}

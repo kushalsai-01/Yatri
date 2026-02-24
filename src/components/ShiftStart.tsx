@@ -51,9 +51,25 @@ export default function ShiftStart({ onBeginShift }: ShiftStartProps) {
       transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
     >
       {/* Header */}
-      <div className="pt-12 pb-4 px-6 text-center">
+      <div className="pt-14 pb-2 px-6 text-center">
+        {/* Bus icon */}
+        <motion.div
+          className="mx-auto mb-3 w-14 h-14 rounded-2xl bg-amber/10 border border-amber/20 flex items-center justify-center"
+          initial={{ scale: 0, rotate: -20 }}
+          animate={{ scale: 1, rotate: 0 }}
+          transition={{ type: 'spring', stiffness: 200, delay: 0.05 }}
+        >
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M8 6v6" /><path d="M16 6v6" />
+            <path d="M2 12h20" />
+            <path d="M7 18h10" />
+            <rect x="4" y="3" width="16" height="15" rx="3" />
+            <circle cx="7.5" cy="18" r="1" fill="var(--amber)" />
+            <circle cx="16.5" cy="18" r="1" fill="var(--amber)" />
+          </svg>
+        </motion.div>
         <motion.h1
-          className="text-amber text-[36px] font-extrabold tracking-tight leading-none"
+          className="text-amber text-[38px] font-extrabold tracking-tight leading-none"
           style={{ fontFamily: 'var(--font-barlow-condensed)' }}
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -62,12 +78,12 @@ export default function ShiftStart({ onBeginShift }: ShiftStartProps) {
           YĀTRI
         </motion.h1>
         <motion.p
-          className="text-text-muted text-sm mt-1"
+          className="text-text-muted text-[13px] mt-1.5 tracking-wide"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
         >
-          Digital Ticketing Companion
+          Digital Ticketing Companion for BMTC
         </motion.p>
       </div>
 
