@@ -14,8 +14,8 @@ interface ShiftStartProps {
 }
 
 export default function ShiftStart({ onBeginShift }: ShiftStartProps) {
-  const [employeeId, setEmployeeId] = useState('1234');
-  const [selectedRoute, setSelectedRoute] = useState<RouteId | ''>('500C');
+  const [employeeId, setEmployeeId] = useState('');
+  const [selectedRoute, setSelectedRoute] = useState<RouteId | ''>('');
   const [showRouteDropdown, setShowRouteDropdown] = useState(false);
   const [prevStats, setPrevStats] = useState({ tickets: 0, revenue: 0 });
 
