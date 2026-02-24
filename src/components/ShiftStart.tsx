@@ -51,34 +51,33 @@ export default function ShiftStart({ onBeginShift }: ShiftStartProps) {
       transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
     >
       {/* Header */}
-      <div className="pt-14 pb-2 px-6 text-center">
-        {/* Bus icon */}
+      <div className="pt-8 pb-1 px-6 text-center">
+        {/* Bus icon + Title inline */}
         <motion.div
-          className="mx-auto mb-3 w-14 h-14 rounded-2xl bg-amber/10 border border-amber/20 flex items-center justify-center"
-          initial={{ scale: 0, rotate: -20 }}
-          animate={{ scale: 1, rotate: 0 }}
-          transition={{ type: 'spring', stiffness: 200, delay: 0.05 }}
-        >
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M8 6v6" /><path d="M16 6v6" />
-            <path d="M2 12h20" />
-            <path d="M7 18h10" />
-            <rect x="4" y="3" width="16" height="15" rx="3" />
-            <circle cx="7.5" cy="18" r="1" fill="var(--amber)" />
-            <circle cx="16.5" cy="18" r="1" fill="var(--amber)" />
-          </svg>
-        </motion.div>
-        <motion.h1
-          className="text-amber text-[38px] font-extrabold tracking-tight leading-none"
-          style={{ fontFamily: 'var(--font-barlow-condensed)' }}
+          className="flex items-center justify-center gap-3 mb-1"
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.1, type: 'spring', stiffness: 200 }}
         >
-          YĀTRI
-        </motion.h1>
+          <div className="w-10 h-10 rounded-xl bg-amber/10 border border-amber/20 flex items-center justify-center">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M8 6v6" /><path d="M16 6v6" />
+              <path d="M2 12h20" />
+              <path d="M7 18h10" />
+              <rect x="4" y="3" width="16" height="15" rx="3" />
+              <circle cx="7.5" cy="18" r="1" fill="var(--amber)" />
+              <circle cx="16.5" cy="18" r="1" fill="var(--amber)" />
+            </svg>
+          </div>
+          <h1
+            className="text-amber text-[36px] font-extrabold tracking-tight leading-none"
+            style={{ fontFamily: 'var(--font-barlow-condensed)' }}
+          >
+            YĀTRI
+          </h1>
+        </motion.div>
         <motion.p
-          className="text-text-muted text-[13px] mt-1.5 tracking-wide"
+          className="text-text-muted text-[12px] mt-1 tracking-wide"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
@@ -90,39 +89,39 @@ export default function ShiftStart({ onBeginShift }: ShiftStartProps) {
       {/* Previous shift stats */}
       {(prevStats.tickets > 0) && (
         <motion.div
-          className="mx-6 mb-4 p-3 rounded-xl bg-surface border border-border flex justify-between"
+          className="mx-6 my-2 p-2.5 rounded-xl bg-surface border border-border flex justify-between"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 0.4 }}
         >
-          <div className="text-center">
-            <div className="text-amber text-lg font-bold" style={{ fontFamily: 'var(--font-space-mono)' }}>
+          <div className="text-center flex-1">
+            <div className="text-amber text-base font-bold" style={{ fontFamily: 'var(--font-space-mono)' }}>
               {prevStats.tickets}
             </div>
-            <div className="text-text-muted text-xs">Tickets Today</div>
+            <div className="text-text-muted text-[10px]">Tickets Today</div>
           </div>
           <div className="w-px bg-border" />
-          <div className="text-center">
-            <div className="text-amber text-lg font-bold" style={{ fontFamily: 'var(--font-space-mono)' }}>
+          <div className="text-center flex-1">
+            <div className="text-amber text-base font-bold" style={{ fontFamily: 'var(--font-space-mono)' }}>
               ₹{prevStats.revenue}
             </div>
-            <div className="text-text-muted text-xs">Collected</div>
+            <div className="text-text-muted text-[10px]">Collected</div>
           </div>
         </motion.div>
       )}
 
       {/* Employee ID Display */}
       <motion.div
-        className="mx-6 mb-3"
+        className="mx-6 mb-2"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
       >
-        <label className="text-text-muted text-xs uppercase tracking-wider mb-2 block font-semibold">
+        <label className="text-text-muted text-xs uppercase tracking-wider mb-1.5 block font-semibold">
           Employee ID
         </label>
         <div
-          className="h-14 rounded-xl bg-surface border border-border flex items-center px-4 gap-1"
+          className="h-12 rounded-xl bg-surface border border-border flex items-center px-4 gap-1"
         >
           <span className="text-text-muted text-base mr-1" style={{ fontFamily: 'var(--font-space-mono)' }}>EMP-</span>
           <span className="text-text text-xl font-bold tracking-[0.15em]" style={{ fontFamily: 'var(--font-space-mono)' }}>
@@ -140,16 +139,16 @@ export default function ShiftStart({ onBeginShift }: ShiftStartProps) {
 
       {/* Route Selector */}
       <motion.div
-        className="mx-6 mb-4 relative"
+        className="mx-6 mb-2 relative"
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
       >
-        <label className="text-text-muted text-xs uppercase tracking-wider mb-2 block font-semibold">
+        <label className="text-text-muted text-xs uppercase tracking-wider mb-1.5 block font-semibold">
           Select Route
         </label>
         <button
-          className="w-full h-14 rounded-xl bg-surface border border-border flex items-center justify-between px-4 press-scale"
+          className="w-full h-12 rounded-xl bg-surface border border-border flex items-center justify-between px-4 press-scale"
           onClick={() => setShowRouteDropdown(!showRouteDropdown)}
         >
           <span className={selectedRoute ? 'text-text font-bold text-lg' : 'text-text-muted text-base'}
@@ -207,12 +206,12 @@ export default function ShiftStart({ onBeginShift }: ShiftStartProps) {
 
       {/* Numeric Keypad — in thumb zone */}
       <motion.div
-        className="px-6 pb-2"
+        className="px-6 pb-1"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
       >
-        <div className="grid grid-cols-3 gap-2 justify-items-center max-w-[240px] mx-auto">
+        <div className="grid grid-cols-3 gap-1.5 justify-items-center max-w-[220px] mx-auto">
           {keys.map((key, i) => {
             if (key === '') return <div key={i} />;
             return (
@@ -238,7 +237,7 @@ export default function ShiftStart({ onBeginShift }: ShiftStartProps) {
       </motion.div>
 
       {/* Begin Shift CTA */}
-      <div className="px-6 pb-8 pt-3">
+      <div className="px-6 pb-6 pt-2">
         <motion.button
           className={`w-full h-14 rounded-xl font-bold text-lg tracking-wide transition-all press-scale ${
             isValid
