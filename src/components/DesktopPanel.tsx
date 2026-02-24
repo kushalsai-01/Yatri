@@ -58,7 +58,7 @@ const RATIONALE_CARDS = [
     icon: '📋',
     color: 'text-blue',
     description:
-      'Designed for BMTC Bangalore conductors (routes: 500C, 401K). Fares are hardcoded per route per BMTC tariff. Seniors/Divyaang ride free per BMTC concession policy. No network dependency — all state lives in localStorage. Optimized for Android (320–430px viewport). The decorative barcode is visual-only; production would integrate with actual thermal printers.',
+      'Designed for BMTC Bangalore conductors — 10 real routes (500C, 401K, 335E, 201R, 356T, 600A, 411D, 314B, 365, 252A) with 90+ unique stops covering the full Bangalore network. Fares follow BMTC zone-based tariff structure. Seniors/Divyaang ride free per BMTC concession policy. No network dependency — all state lives in localStorage for true offline operation. Optimized for Android (320–430px viewport). The decorative barcode is visual-only; production would integrate with thermal printers via Web USB API.',
   },
 ];
 
@@ -102,7 +102,7 @@ export default function DesktopPanel({
         </p>
         <p className="text-text-muted text-xs leading-relaxed mb-6">
           A mobile-first ticketing app for BMTC bus conductors in Bangalore.
-          Optimized for speed, one-handed use, and sunlight readability.
+          10 routes, 90+ stops, offline-first. Optimized for speed, one-handed use, and sunlight readability.
         </p>
       </motion.div>
 

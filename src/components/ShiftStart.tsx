@@ -6,7 +6,7 @@
 
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ROUTE_IDS, type RouteId } from '@/data/routes';
+import { ROUTE_IDS, ROUTES, type RouteId } from '@/data/routes';
 import { getShiftData } from '@/lib/storage';
 
 interface ShiftStartProps {
@@ -14,8 +14,8 @@ interface ShiftStartProps {
 }
 
 export default function ShiftStart({ onBeginShift }: ShiftStartProps) {
-  const [employeeId, setEmployeeId] = useState('');
-  const [selectedRoute, setSelectedRoute] = useState<RouteId | ''>('');
+  const [employeeId, setEmployeeId] = useState('1234');
+  const [selectedRoute, setSelectedRoute] = useState<RouteId | ''>('500C');
   const [showRouteDropdown, setShowRouteDropdown] = useState(false);
   const [prevStats, setPrevStats] = useState({ tickets: 0, revenue: 0 });
 
@@ -50,8 +50,26 @@ export default function ShiftStart({ onBeginShift }: ShiftStartProps) {
       exit={{ x: '-100%', opacity: 0 }}
       transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
     >
+      {/* ─── Recruiter Quick-Start Banner ─── */}
+      <motion.div
+        className="mx-4 mt-3 px-3 py-2.5 rounded-xl bg-amber/10 border border-amber/25 flex items-start gap-2.5"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, type: 'spring', stiffness: 200 }}
+      >
+        <span className="text-amber text-base mt-0.5">💡</span>
+        <div>
+          <p className="text-amber text-[11px] font-bold uppercase tracking-wider leading-none mb-1">
+            For Reviewers
+          </p>
+          <p className="text-text-muted text-[11px] leading-[1.5]">
+            ID &amp; route are pre-filled — just tap <span className="text-amber font-semibold">BEGIN SHIFT</span> to explore the full ticketing flow. Try issuing a few tickets to see analytics!
+          </p>
+        </div>
+      </motion.div>
+
       {/* Header */}
-      <div className="pt-14 pb-2 px-6 text-center">
+      <div className="pt-4 pb-2 px-6 text-center">
         {/* Bus icon */}
         <motion.div
           className="mx-auto mb-3 w-14 h-14 rounded-2xl bg-amber/10 border border-amber/20 flex items-center justify-center"
@@ -155,7 +173,7 @@ export default function ShiftStart({ onBeginShift }: ShiftStartProps) {
           <span className={selectedRoute ? 'text-text font-bold text-lg' : 'text-text-muted text-base'}
             style={{ fontFamily: 'var(--font-barlow-condensed)' }}
           >
-            {selectedRoute || 'Tap to select route'}
+            {selectedRoute ? `${selectedRoute} — ${ROUTES[selectedRoute].depot}` : 'Tap to select route'}
           </span>
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none" className={`transition-transform ${showRouteDropdown ? 'rotate-180' : ''}`}>
             <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="text-text-muted" />
@@ -164,7 +182,7 @@ export default function ShiftStart({ onBeginShift }: ShiftStartProps) {
         <AnimatePresence>
           {showRouteDropdown && (
             <motion.div
-              className="absolute top-full left-0 right-0 mt-1 bg-surface2 border border-border rounded-xl overflow-hidden z-10"
+              className="absolute top-full left-0 right-0 mt-1 bg-surface2 border border-border rounded-xl overflow-hidden z-10 max-h-52 overflow-y-auto"
               initial={{ opacity: 0, y: -8 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -8 }}
@@ -173,21 +191,28 @@ export default function ShiftStart({ onBeginShift }: ShiftStartProps) {
               {ROUTE_IDS.map((routeId) => (
                 <button
                   key={routeId}
-                  className="w-full px-4 py-3 text-left flex items-center gap-3 hover:bg-surface3 transition-colors press-scale"
+                  className={`w-full px-4 py-3 text-left flex items-center gap-3 hover:bg-surface3 transition-colors press-scale ${
+                    selectedRoute === routeId ? 'bg-amber/10' : ''
+                  }`}
                   onClick={() => {
                     setSelectedRoute(routeId);
                     setShowRouteDropdown(false);
                   }}
                 >
                   <span
-                    className="bg-amber text-bg text-xs font-bold px-2 py-1 rounded-md"
+                    className="bg-amber text-bg text-xs font-bold px-2 py-1 rounded-md min-w-[44px] text-center"
                     style={{ fontFamily: 'var(--font-barlow-condensed)' }}
                   >
                     {routeId}
                   </span>
-                  <span className="text-text text-sm">
-                    {routeId === '500C' ? 'Vijayanagar Depot' : 'Shantinagar Depot'}
-                  </span>
+                  <div className="min-w-0 flex-1">
+                    <span className="text-text text-sm block truncate">
+                      {ROUTES[routeId].depot}
+                    </span>
+                    <span className="text-text-muted text-[10px]">
+                      {ROUTES[routeId].stops.length} stops
+                    </span>
+                  </div>
                 </button>
               ))}
             </motion.div>
