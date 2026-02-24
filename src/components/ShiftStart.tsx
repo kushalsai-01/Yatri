@@ -50,26 +50,8 @@ export default function ShiftStart({ onBeginShift }: ShiftStartProps) {
       exit={{ x: '-100%', opacity: 0 }}
       transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
     >
-      {/* ─── Recruiter Quick-Start Banner ─── */}
-      <motion.div
-        className="mx-4 mt-3 px-3 py-2.5 rounded-xl bg-amber/10 border border-amber/25 flex items-start gap-2.5"
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5, type: 'spring', stiffness: 200 }}
-      >
-        <span className="text-amber text-base mt-0.5">💡</span>
-        <div>
-          <p className="text-amber text-[11px] font-bold uppercase tracking-wider leading-none mb-1">
-            For Reviewers
-          </p>
-          <p className="text-text-muted text-[11px] leading-[1.5]">
-            ID &amp; route are pre-filled — just tap <span className="text-amber font-semibold">BEGIN SHIFT</span> to explore the full ticketing flow. Try issuing a few tickets to see analytics!
-          </p>
-        </div>
-      </motion.div>
-
       {/* Header */}
-      <div className="pt-4 pb-2 px-6 text-center">
+      <div className="pt-14 pb-2 px-6 text-center">
         {/* Bus icon */}
         <motion.div
           className="mx-auto mb-3 w-14 h-14 rounded-2xl bg-amber/10 border border-amber/20 flex items-center justify-center"
